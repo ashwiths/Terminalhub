@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import HeartButton from './HeartButton';
 
-export const PKG_MANAGERS = ['npm', 'yarn', 'pnpm'];
+export const AI_TABS = [
+    { id: 'python', label: 'Python' },
+    { id: 'js', label: 'JavaScript' }
+];
 
 export function CopyButton({ text, size = 'sm' }) {
     const [copied, setCopied] = useState(false);
@@ -22,7 +25,7 @@ export function CopyButton({ text, size = 'sm' }) {
             aria-label="Copy"
             className={`flex-shrink-0 transition-all duration-150 ${cls} ${copied
                 ? 'border-emerald-500 bg-emerald-500/10 text-emerald-400'
-                : 'border-surface-500 text-slate-500 hover:border-brand-cyan hover:text-brand-cyan'
+                : 'border-surface-500 text-slate-500 hover:border-indigo-400 hover:text-indigo-400'
                 }`}
         >
             {copied ? (
@@ -39,23 +42,42 @@ export function CopyButton({ text, size = 'sm' }) {
     );
 }
 
-export function StepRow({ number, step, pkg }) {
-    const cmd = step[pkg];
+export function StepRow({ number, step, lang }) {
+    const cmd = step[lang];
+    if (cmd === null || cmd === undefined) {
+        return (
+            <div className="flex flex-col gap-1.5 opacity-50">
+                <div className="flex items-start gap-2 mt-2">
+                    <span className="text-[#f43f5e] font-mono text-xs font-bold select-none whitespace-nowrap">
+                        Step {number}
+                    </span>
+                    <span className="text-slate-400 text-sm leading-snug">Not applicable for this language.</span>
+                </div>
+                <div className="flex items-center gap-3 bg-[#0d1117] border border-surface-500/70 rounded-xl px-4 py-3">
+                    <span className="text-slate-600 font-mono text-sm select-none flex-shrink-0 mt-0.5">-</span>
+                    <code className="font-mono text-slate-500 text-sm flex-1 break-all">
+                        No command required / supported.
+                    </code>
+                </div>
+            </div>
+        );
+    }
+
+    const isMultiLine = cmd.includes('\n');
     return (
         <div className="flex flex-col gap-1.5">
-            {/* Step header */}
-            <div className="flex items-center gap-2 mt-2">
-                <span className="text-brand-cyan font-mono text-xs font-bold select-none">
+            <div className="flex items-start gap-2 mt-2">
+                <span className="text-[#f43f5e] font-mono text-xs font-bold select-none whitespace-nowrap">
                     Step {number}
                 </span>
                 <span className="text-slate-400 text-sm leading-snug">{step.hint}</span>
             </div>
-
-            {/* Command line */}
-            <div className="flex items-center gap-3 bg-[#0d1117] border border-surface-500/70
-                      rounded-xl px-4 py-3 group/cmd">
-                <span className="text-slate-600 font-mono text-sm select-none flex-shrink-0">$</span>
-                <code className="font-mono text-brand-cyan text-sm leading-snug flex-1 break-all">
+            <div className={`flex ${isMultiLine ? 'items-start' : 'items-center'} gap-3 bg-[#0d1117] border border-surface-500/70
+                      rounded-xl px-4 py-3 group/cmd`}>
+                <span className="text-slate-600 font-mono text-sm select-none flex-shrink-0 mt-0.5">
+                    {cmd.startsWith('npm') || cmd.startsWith('pip') || cmd.startsWith('export') || cmd.startsWith('node') || cmd.startsWith('python') || cmd.startsWith('mkdir') || cmd.startsWith('touch') ? '$' : '>'}
+                </span>
+                <code className={`font-mono text-indigo-400 text-sm flex-1 break-all ${isMultiLine ? 'whitespace-pre-wrap' : 'leading-snug'}`}>
                     {cmd}
                 </code>
                 <CopyButton text={cmd} size="sm" />
@@ -64,12 +86,13 @@ export function StepRow({ number, step, pkg }) {
     );
 }
 
-export default function FrameworkCard({ fw, onShowSteps }) {
+export default function AiCard({ fw, onShowSteps }) {
     const [copiedMain, setCopiedMain] = useState(false);
+    const mainCmd = fw.steps?.[0]?.[fw.steps?.[0]?.python ? 'python' : 'js'] ?? ''; // Prefer python if available
 
     const handleCopyMain = async () => {
         try {
-            await navigator.clipboard.writeText(fw.command);
+            await navigator.clipboard.writeText(mainCmd);
             setCopiedMain(true);
             setTimeout(() => setCopiedMain(false), 1600);
         } catch { /* noop */ }
@@ -78,12 +101,9 @@ export default function FrameworkCard({ fw, onShowSteps }) {
     return (
         <article
             className="group relative flex flex-col gap-4 p-6 rounded-2xl border
-                 bg-surface-700 hover:bg-surface-600
-                 hover:-translate-y-0.5
+                 bg-surface-700 hover:bg-surface-600 hover:-translate-y-0.5
                  transition-all duration-200"
-            style={{
-                boxShadow: 'inset 0 0 0 1px #1e2333',
-            }}
+            style={{ boxShadow: 'inset 0 0 0 1px #1e2333' }}
             onMouseEnter={(e) =>
                 (e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${fw.badgeColor}55, 0 8px 32px rgba(0,0,0,0.4)`)
             }
@@ -91,7 +111,7 @@ export default function FrameworkCard({ fw, onShowSteps }) {
                 (e.currentTarget.style.boxShadow = 'inset 0 0 0 1px #1e2333')
             }
         >
-            {/* ── Header ───────────────────────────── */}
+            {/* ── Header ───────── */}
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                     <span className="text-2xl">{fw.icon}</span>
@@ -101,31 +121,30 @@ export default function FrameworkCard({ fw, onShowSteps }) {
                     className="flex-shrink-0 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1
                      rounded-full border whitespace-nowrap mt-0.5"
                     style={{
-                        color: fw.badgeColor,
-                        borderColor: `${fw.badgeColor}44`,
-                        background: `${fw.badgeColor}12`,
+                        color: fw.badgeColor === '#000000' || fw.badgeColor === '#ffffff' ? '#e2e8f0' : fw.badgeColor,
+                        borderColor: `${fw.badgeColor === '#000000' || fw.badgeColor === '#ffffff' ? '#e2e8f0' : fw.badgeColor}44`,
+                        background: `${fw.badgeColor === '#000000' || fw.badgeColor === '#ffffff' ? '#e2e8f0' : fw.badgeColor}12`,
                     }}
                 >
                     {fw.badge}
                 </span>
             </div>
 
-            {/* ── Description ──────────────────────── */}
+            {/* ── Description ──── */}
             <p className="text-slate-400 text-sm leading-relaxed">{fw.description}</p>
 
-            {/* ── Quick install command ─────────────── */}
-            <div className="flex items-center gap-2 bg-surface-900 border border-surface-500
-                      rounded-xl px-4 py-3">
-                <span className="text-slate-600 font-mono text-sm select-none flex-shrink-0">$</span>
-                <code className="font-mono text-brand-cyan text-[12.5px] leading-snug flex-1 break-all">
-                    {fw.command}
+            {/* ── Quick install ─── */}
+            <div className={`flex ${mainCmd.includes('\n') ? 'items-start' : 'items-center'} gap-2 bg-surface-900 border border-surface-500 rounded-xl px-4 py-3`}>
+                <span className="text-slate-600 font-mono text-sm select-none flex-shrink-0 mt-0.5">$</span>
+                <code className={`font-mono text-indigo-400 text-[12.5px] flex-1 break-all ${mainCmd.includes('\n') ? 'whitespace-pre-wrap' : 'leading-snug'}`}>
+                    {mainCmd}
                 </code>
                 <button
                     onClick={handleCopyMain}
-                    aria-label="Copy command"
+                    aria-label="Copy install command"
                     className={`flex-shrink-0 p-1.5 rounded-lg border transition-all duration-150 ${copiedMain
                         ? 'border-emerald-500 bg-emerald-500/10 text-emerald-400'
-                        : 'border-surface-500 text-slate-500 hover:border-brand-cyan hover:text-brand-cyan'
+                        : 'border-surface-500 text-slate-500 hover:border-indigo-400 hover:text-indigo-400'
                         }`}
                 >
                     {copiedMain ? (
@@ -140,21 +159,21 @@ export default function FrameworkCard({ fw, onShowSteps }) {
                     )}
                 </button>
                 <HeartButton item={{
-                    id: `frameworks-${fw.id}-install`,
+                    id: `ai-${fw.id}-install-quick`,
                     framework: fw.name,
                     frameworkIcon: fw.icon,
-                    section: 'Frontend Frameworks',
+                    section: 'AI Frameworks',
                     label: 'Install',
-                    command: fw.command,
-                    lang: 'npm',
+                    command: mainCmd,
+                    lang: fw.steps?.[0]?.python ? 'python' : 'js',
                 }} />
             </div>
 
-            {/* ── Toggle button ────────────────────── */}
+            {/* ── Show Steps ────── */}
             <button
                 onClick={() => onShowSteps(fw)}
                 className="flex items-center justify-between w-full px-4 py-2.5 rounded-xl border
-                    border-surface-500 text-slate-400 hover:border-brand-cyan/40 hover:text-brand-cyan
+                    border-surface-500 text-slate-400 hover:border-indigo-400/40 hover:text-indigo-400
                     text-sm font-medium transition-all duration-200"
             >
                 <span className="flex items-center gap-2">
@@ -165,18 +184,15 @@ export default function FrameworkCard({ fw, onShowSteps }) {
                     </svg>
                     Show Setup Steps
                 </span>
-                <span className="text-xs text-slate-500 font-mono">
-                    →
-                </span>
+                <span className="text-xs text-slate-500 font-mono">→</span>
             </button>
 
-            {/* When collapsed, still show docs link */}
+            {/* ── Docs link ────── */}
             <a
                 href={fw.docs}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-600
-                 hover:text-slate-400 transition-colors w-fit"
+                className="inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-400 transition-colors w-fit"
             >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />

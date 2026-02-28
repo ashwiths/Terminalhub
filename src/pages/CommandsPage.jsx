@@ -4,6 +4,9 @@ import { stylingFrameworks } from '../data/styling.js';
 import { backendFrameworks } from '../data/backend.js';
 import { pythonFrameworks } from '../data/pythonData.js';
 import { javaFrameworks } from '../data/javaData.js';
+import { mobileFrameworks } from '../data/mobileData.js';
+import { docsFrameworks } from '../data/docsData.js';
+import { aiFrameworks } from '../data/aiData.js';
 
 export default function CommandsPage() {
     return (
@@ -229,6 +232,130 @@ export default function CommandsPage() {
                         </svg>
                     </div>
                 </Link>
+
+                {/* ── Mobile Frameworks card ── */}
+                <Link
+                    to="/mobile"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-cyan-500/40 bg-cyan-500/5 shadow-[0_0_0_1px_rgba(6,182,212,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-cyan-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-cyan-500/30 bg-cyan-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        📱
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Mobile Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-cyan-500/40 bg-cyan-500/10 text-cyan-400">
+                                Mobile apps
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            React Native, Flutter, Ionic, and Expo — cross-platform and hybrid options with complete build instructions for Android and iOS.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['React Native', 'Flutter', 'Ionic', 'Expo'].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-cyan-400/80 bg-cyan-500/10 border border-cyan-500/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center
+                          text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
+
+                {/* ── Docs Frameworks card ── */}
+                <Link
+                    to="/docs"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-[#25c2a0]/40 bg-[#25c2a0]/5 shadow-[0_0_0_1px_rgba(37,194,160,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-[#25c2a0]/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-[#25c2a0]/30 bg-[#25c2a0]/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        📚
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Docs &amp; Static Sites
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-[#25c2a0]/40 bg-[#25c2a0]/10 text-[#25c2a0]">
+                                Documentation
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Docusaurus, VitePress, MkDocs, Hugo, and Eleventy — Markdown-first frameworks and static site generators for beautiful technical documentation.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['Docusaurus', 'VitePress', 'MkDocs', 'Hugo', 'Eleventy'].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-[#25c2a0]/80 bg-[#25c2a0]/10 border border-[#25c2a0]/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-[#25c2a0]/20 flex items-center justify-center
+                          text-[#25c2a0] group-hover:bg-[#25c2a0] group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
+
+                {/* ── AI Frameworks card ── */}
+                <Link
+                    to="/ai"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-indigo-500/40 bg-indigo-500/5 shadow-[0_0_0_1px_rgba(99,102,241,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-indigo-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-indigo-500/30 bg-indigo-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        🤖
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                AI Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-indigo-500/40 bg-indigo-500/10 text-indigo-400">
+                                Machine Learning
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            LangChain, LlamaIndex, Haystack, and TensorFlow.js — orchestrate LLMs, build RAG pipelines, and develop models.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['LangChain', 'LlamaIndex', 'Haystack', 'TensorFlow.js'].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-indigo-400/80 bg-indigo-500/10 border border-indigo-500/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center
+                          text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
+
             </section>
         </main>
     );

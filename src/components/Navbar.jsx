@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { useFavoritesContext } from '../context/FavoritesContext';
 
 export default function Navbar() {
+    const { favorites } = useFavoritesContext();
+
     return (
         <nav className="sticky top-0 z-50 border-b border-surface-500 bg-surface-900/80 backdrop-blur-md">
             <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -40,8 +43,31 @@ export default function Navbar() {
                             }`
                         }
                     >
-                        Commands
+                        Frameworks
                     </NavLink>
+
+                    {/* Favorites heart link */}
+                    <NavLink
+                        to="/favorites"
+                        className={({ isActive }) =>
+                            `relative ml-1 flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${isActive
+                                ? 'text-rose-400 bg-rose-500/10 border border-rose-500/30'
+                                : 'text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/30'
+                            }`
+                        }
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                        Favorites
+                        {favorites.length > 0 && (
+                            <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] flex items-center justify-center
+                                 bg-rose-500 text-white text-[10px] font-bold rounded-full px-1 shadow-lg">
+                                {favorites.length > 99 ? '99+' : favorites.length}
+                            </span>
+                        )}
+                    </NavLink>
+
                     <a
                         href="https://github.com/your-org/terminalhub"
                         target="_blank"

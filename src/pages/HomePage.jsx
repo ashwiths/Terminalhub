@@ -161,12 +161,12 @@ export default function HomePage() {
                         Edit one JSON file, open a PR. New commands go live for everyone within minutes.
                     </p>
                     <Link
-                        to="/commands"
+                        to="/favorites"
                         className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm
                        bg-brand-cyan text-surface-900 hover:bg-brand-cyan/90 transition-all duration-150
                        shadow-lg shadow-brand-cyan/20 hover:-translate-y-0.5"
                     >
-                        Explore Commands →
+                        ❤ Explore Favorites →
                     </Link>
                 </div>
             </section>

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { backendFrameworks, backendCategories } from '../data/backend.js';
 import BackendCard, { PKG_MANAGERS, StepRow } from '../components/BackendCard';
+import HeartButton from '../components/HeartButton';
 
 export default function BackendPage() {
     const [search, setSearch] = useState('');
@@ -197,9 +198,27 @@ export default function BackendPage() {
 
                             {/* Steps */}
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
-                                {(selectedFw.steps || []).map((s, i) => (
-                                    <StepRow key={i} number={i + 1} step={s} pkg={pkg} />
-                                ))}
+                                {(selectedFw.steps || []).map((s, i) => {
+                                    const cmd = s[pkg];
+                                    return (
+                                        <div key={i} className="relative">
+                                            <StepRow number={i + 1} step={s} pkg={pkg} />
+                                            {cmd !== null && cmd !== undefined && (
+                                                <div className="absolute right-0 top-0 mt-[6px]">
+                                                    <HeartButton item={{
+                                                        id: `backend-frameworks-${selectedFw.id}-step-${i}-${pkg}`,
+                                                        framework: selectedFw.name,
+                                                        frameworkIcon: selectedFw.icon,
+                                                        section: 'Backend Frameworks',
+                                                        label: s.label,
+                                                        command: cmd,
+                                                        lang: pkg,
+                                                    }} />
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Footer */}

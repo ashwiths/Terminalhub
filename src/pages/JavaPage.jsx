@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { javaFrameworks, javaCategories } from '../data/javaData.js';
 import JavaCard, { JAVA_TABS, StepRow } from '../components/JavaCard';
+import HeartButton from '../components/HeartButton';
 
 export default function JavaPage() {
     const [search, setSearch] = useState('');
@@ -197,9 +198,27 @@ export default function JavaPage() {
 
                             {/* Steps */}
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
-                                {(selectedFw.steps || []).map((s, i) => (
-                                    <StepRow key={i} number={i + 1} step={s} buildTool={buildTool} />
-                                ))}
+                                {(selectedFw.steps || []).map((s, i) => {
+                                    const cmd = s[buildTool];
+                                    return (
+                                        <div key={i} className="relative">
+                                            <StepRow number={i + 1} step={s} buildTool={buildTool} />
+                                            {cmd !== null && cmd !== undefined && (
+                                                <div className="absolute right-0 top-0 mt-[6px]">
+                                                    <HeartButton item={{
+                                                        id: `java-frameworks-${selectedFw.id}-step-${i}-${buildTool}`,
+                                                        framework: selectedFw.name,
+                                                        frameworkIcon: selectedFw.icon,
+                                                        section: 'Java Frameworks',
+                                                        label: s.label,
+                                                        command: cmd,
+                                                        lang: buildTool,
+                                                    }} />
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Footer */}

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { pythonFrameworks, pythonCategories } from '../data/pythonData.js';
 import PythonCard, { OS_TABS, StepRow } from '../components/PythonCard';
+import HeartButton from '../components/HeartButton';
 
 export default function PythonPage() {
     const [search, setSearch] = useState('');
@@ -197,9 +198,27 @@ export default function PythonPage() {
 
                             {/* Steps */}
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
-                                {(selectedFw.steps || []).map((s, i) => (
-                                    <StepRow key={i} number={i + 1} step={s} os={os} />
-                                ))}
+                                {(selectedFw.steps || []).map((s, i) => {
+                                    const cmd = s[os];
+                                    return (
+                                        <div key={i} className="relative">
+                                            <StepRow number={i + 1} step={s} os={os} />
+                                            {cmd !== null && cmd !== undefined && (
+                                                <div className="absolute right-0 top-0 mt-[6px]">
+                                                    <HeartButton item={{
+                                                        id: `python-frameworks-${selectedFw.id}-step-${i}-${os}`,
+                                                        framework: selectedFw.name,
+                                                        frameworkIcon: selectedFw.icon,
+                                                        section: 'Python Frameworks',
+                                                        label: s.label,
+                                                        command: cmd,
+                                                        lang: os,
+                                                    }} />
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Footer */}

@@ -1,14 +1,13 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { stylingFrameworks, stylingCategories } from '../data/styling.js';
-import StylingCard, { PKG_MANAGERS, StepRow } from '../components/StylingCard';
-import HeartButton from '../components/HeartButton';
+import { mobileFrameworks, mobileCategories } from '../data/mobileData.js';
+import MobileCard, { MOBILE_TABS, StepRow } from '../components/MobileCard';
 
-export default function StylingPage() {
+export default function MobilePage() {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('All');
     const [selectedFw, setSelectedFw] = useState(null);
-    const [pkg, setPkg] = useState('npm');
+    const [os, setOs] = useState('android');
 
     useEffect(() => {
         document.body.style.overflow = selectedFw ? 'hidden' : '';
@@ -16,7 +15,7 @@ export default function StylingPage() {
     }, [selectedFw]);
 
     const filtered = useMemo(() => {
-        let list = stylingFrameworks;
+        let list = mobileFrameworks;
         if (category !== 'All') {
             list = list.filter((fw) =>
                 fw.badge.toLowerCase() === category.toLowerCase()
@@ -48,18 +47,18 @@ export default function StylingPage() {
 
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-2">
                     <div>
-                        <p className="text-pink-400 font-mono text-xs font-bold tracking-widest uppercase mb-3">
-                            Styling Guide
+                        <p className="text-cyan-500 font-mono text-xs font-bold tracking-widest uppercase mb-3">
+                            Mobile Ecosystem
                         </p>
                         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-3">
-                            Styling Frameworks
+                            Mobile Frameworks
                         </h1>
                         <p className="text-slate-400 text-lg max-w-2xl">
-                            Every major CSS & component library — full install guide with npm, yarn, and pnpm support.
+                            Cross-platform, hybrid, and native-like frameworks for building mobile apps. Explore setup guides for Android and iOS.
                         </p>
                     </div>
                     <div className="flex items-center gap-2 bg-surface-700 border border-surface-500 rounded-xl px-5 py-3 self-start md:self-auto">
-                        <span className="font-mono text-pink-400 text-2xl font-black">{stylingFrameworks.length}</span>
+                        <span className="font-mono text-cyan-500 text-2xl font-black">{mobileFrameworks.length}</span>
                         <span className="text-slate-400 text-sm">Frameworks</span>
                     </div>
                 </div>
@@ -76,12 +75,12 @@ export default function StylingPage() {
                         </div>
                         <input
                             type="text"
-                            placeholder="Search styling frameworks…"
+                            placeholder="Search Mobile frameworks…"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             className="w-full pl-10 pr-4 py-2.5 bg-surface-700 border border-surface-500 rounded-xl
                          text-white placeholder-slate-500 text-sm outline-none
-                         focus:border-pink-400 focus:ring-2 focus:ring-pink-400/20 transition-all"
+                         focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                         />
                         {search && (
                             <button
@@ -96,12 +95,12 @@ export default function StylingPage() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {stylingCategories.map((cat) => (
+                        {mobileCategories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setCategory(cat)}
                                 className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all duration-150 ${category === cat
-                                    ? 'bg-pink-400/10 border-pink-400 text-pink-400'
+                                    ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500'
                                     : 'border-surface-500 text-slate-400 hover:border-slate-400 hover:text-white'
                                     }`}
                             >
@@ -115,28 +114,28 @@ export default function StylingPage() {
             {/* ── Cards grid ──────────────────── */}
             <section className="max-w-7xl mx-auto px-6 pb-24">
                 <p className="text-xs text-slate-600 font-mono mb-5">
-                    Showing <span className="text-pink-400">{filtered.length}</span> of {stylingFrameworks.length} styling libraries
+                    Showing <span className="text-cyan-500">{filtered.length}</span> of {mobileFrameworks.length} Mobile frameworks
                     {search && ` · matching "${search}"`}
                 </p>
 
                 {filtered.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-32 gap-4 text-center">
-                        <span className="text-5xl opacity-30">🎨</span>
-                        <p className="text-lg font-semibold text-slate-400">No styling frameworks found</p>
+                        <span className="text-5xl opacity-30">📱</span>
+                        <p className="text-lg font-semibold text-slate-400">No Mobile frameworks found</p>
                         <p className="text-sm text-slate-600">Try a different keyword or clear the filters</p>
                         <button
                             onClick={() => { setSearch(''); setCategory('All'); }}
-                            className="mt-2 px-5 py-2.5 rounded-xl border border-pink-400/40 text-pink-300
-                         text-sm font-medium hover:bg-pink-400/10 transition-all"
+                            className="mt-2 px-5 py-2.5 rounded-xl border border-cyan-500/40 text-cyan-400
+                         text-sm font-medium hover:bg-cyan-500/10 transition-all"
                         >
                             Clear filters
                         </button>
                     </div>
                 ) : (
                     <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
-                        {filtered.map((fw, i) => (
+                        {filtered.map((fw) => (
                             <div key={fw.id} className="break-inside-avoid rounded-2xl">
-                                <StylingCard fw={fw} index={i} onShowSteps={setSelectedFw} />
+                                <MobileCard fw={fw} onShowSteps={setSelectedFw} />
                             </div>
                         ))}
                     </div>
@@ -152,7 +151,7 @@ export default function StylingPage() {
                 >
                     <div
                         className="relative w-full max-w-2xl bg-[#0d1117] border border-surface-500 rounded-3xl
-                     shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(251,113,133,0.1)]
+                     shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(6,182,212,0.2)]
                      overflow-hidden flex flex-col max-h-[90vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -164,7 +163,7 @@ export default function StylingPage() {
                                     <h2 className="text-2xl font-extrabold text-white mb-1">
                                         {selectedFw.name} Setup
                                     </h2>
-                                    <p className="text-slate-400 text-sm">Complete installation workflow</p>
+                                    <p className="text-slate-400 text-sm">{selectedFw.badge} Setup Guide</p>
                                 </div>
                             </div>
                             <button
@@ -180,18 +179,18 @@ export default function StylingPage() {
 
                         {/* Modal body */}
                         <div className="p-6 sm:p-8 overflow-y-auto bg-[#0d1117]">
-                            {/* Package manager tabs */}
+                            {/* OS tabs */}
                             <div className="flex gap-2 p-1 mb-8 bg-surface-800 border border-surface-500 rounded-xl w-fit">
-                                {PKG_MANAGERS.map((m) => (
+                                {MOBILE_TABS.map((t) => (
                                     <button
-                                        key={m}
-                                        onClick={() => setPkg(m)}
-                                        className={`px-5 py-2 rounded-lg text-sm font-bold font-mono transition-all duration-150 ${pkg === m
-                                            ? 'bg-pink-400/20 text-pink-300 border border-pink-400/30'
+                                        key={t.id}
+                                        onClick={() => setOs(t.id)}
+                                        className={`px-5 py-2 rounded-lg text-sm font-bold font-mono transition-all duration-150 ${os === t.id
+                                            ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
                                             : 'text-slate-500 hover:text-slate-300 border border-transparent'
                                             }`}
                                     >
-                                        {m}
+                                        {t.label}
                                     </button>
                                 ))}
                             </div>
@@ -199,20 +198,20 @@ export default function StylingPage() {
                             {/* Steps */}
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
                                 {(selectedFw.steps || []).map((s, i) => {
-                                    const cmd = s[pkg];
+                                    const cmd = s[os];
                                     return (
                                         <div key={i} className="relative">
-                                            <StepRow number={i + 1} step={s} pkg={pkg} />
+                                            <StepRow number={i + 1} step={s} os={os} />
                                             {cmd !== null && cmd !== undefined && (
                                                 <div className="absolute right-0 top-0 mt-[6px]">
                                                     <HeartButton item={{
-                                                        id: `styling-frameworks-${selectedFw.id}-step-${i}-${pkg}`,
+                                                        id: `mobile-frameworks-${selectedFw.id}-step-${i}-${os}`,
                                                         framework: selectedFw.name,
                                                         frameworkIcon: selectedFw.icon,
-                                                        section: 'Styling Frameworks',
+                                                        section: 'Mobile Frameworks',
                                                         label: s.label,
                                                         command: cmd,
-                                                        lang: pkg,
+                                                        lang: os,
                                                     }} />
                                                 </div>
                                             )}

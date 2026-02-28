@@ -1,22 +1,33 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { stylingFrameworks, stylingCategories } from '../data/styling.js';
-import StylingCard, { PKG_MANAGERS, StepRow } from '../components/StylingCard';
+import { aiFrameworks, aiCategories } from '../data/aiData.js';
+import AiCard, { AI_TABS, StepRow } from '../components/AiCard';
 import HeartButton from '../components/HeartButton';
 
-export default function StylingPage() {
+export default function AiPage() {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('All');
     const [selectedFw, setSelectedFw] = useState(null);
-    const [pkg, setPkg] = useState('npm');
+    const [lang, setLang] = useState('python');
 
     useEffect(() => {
         document.body.style.overflow = selectedFw ? 'hidden' : '';
         return () => { document.body.style.overflow = ''; };
     }, [selectedFw]);
 
+    // When modal opens, auto-select a supported language tab
+    useEffect(() => {
+        if (selectedFw) {
+            if (selectedFw.steps[0]?.python === null && selectedFw.steps[0]?.js !== null) {
+                setLang('js');
+            } else {
+                setLang('python');
+            }
+        }
+    }, [selectedFw]);
+
     const filtered = useMemo(() => {
-        let list = stylingFrameworks;
+        let list = aiFrameworks;
         if (category !== 'All') {
             list = list.filter((fw) =>
                 fw.badge.toLowerCase() === category.toLowerCase()
@@ -41,26 +52,26 @@ export default function StylingPage() {
             <section className="max-w-7xl mx-auto px-6 pt-14 pb-10">
                 <Link
                     to="/commands"
-                    className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-cyan transition-colors mb-8"
+                    className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-indigo-400 transition-colors mb-8"
                 >
                     <span>←</span> Back to Commands
                 </Link>
 
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-2">
                     <div>
-                        <p className="text-pink-400 font-mono text-xs font-bold tracking-widest uppercase mb-3">
-                            Styling Guide
+                        <p className="text-indigo-400 font-mono text-xs font-bold tracking-widest uppercase mb-3">
+                            Machine Learning
                         </p>
                         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight mb-3">
-                            Styling Frameworks
+                            AI Frameworks
                         </h1>
                         <p className="text-slate-400 text-lg max-w-2xl">
-                            Every major CSS & component library — full install guide with npm, yarn, and pnpm support.
+                            Orchestrate LLMs, build RAG pipelines, and develop machine learning models with industry-standard libraries.
                         </p>
                     </div>
                     <div className="flex items-center gap-2 bg-surface-700 border border-surface-500 rounded-xl px-5 py-3 self-start md:self-auto">
-                        <span className="font-mono text-pink-400 text-2xl font-black">{stylingFrameworks.length}</span>
-                        <span className="text-slate-400 text-sm">Frameworks</span>
+                        <span className="font-mono text-indigo-400 text-2xl font-black">{aiFrameworks.length}</span>
+                        <span className="text-slate-400 text-sm">Libraries</span>
                     </div>
                 </div>
             </section>
@@ -76,12 +87,12 @@ export default function StylingPage() {
                         </div>
                         <input
                             type="text"
-                            placeholder="Search styling frameworks…"
+                            placeholder="Search AI libraries…"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             className="w-full pl-10 pr-4 py-2.5 bg-surface-700 border border-surface-500 rounded-xl
                          text-white placeholder-slate-500 text-sm outline-none
-                         focus:border-pink-400 focus:ring-2 focus:ring-pink-400/20 transition-all"
+                         focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all"
                         />
                         {search && (
                             <button
@@ -96,12 +107,12 @@ export default function StylingPage() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {stylingCategories.map((cat) => (
+                        {aiCategories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setCategory(cat)}
                                 className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition-all duration-150 ${category === cat
-                                    ? 'bg-pink-400/10 border-pink-400 text-pink-400'
+                                    ? 'bg-indigo-500/10 border-indigo-400 text-indigo-400'
                                     : 'border-surface-500 text-slate-400 hover:border-slate-400 hover:text-white'
                                     }`}
                             >
@@ -115,28 +126,28 @@ export default function StylingPage() {
             {/* ── Cards grid ──────────────────── */}
             <section className="max-w-7xl mx-auto px-6 pb-24">
                 <p className="text-xs text-slate-600 font-mono mb-5">
-                    Showing <span className="text-pink-400">{filtered.length}</span> of {stylingFrameworks.length} styling libraries
+                    Showing <span className="text-indigo-400">{filtered.length}</span> of {aiFrameworks.length} libraries
                     {search && ` · matching "${search}"`}
                 </p>
 
                 {filtered.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-32 gap-4 text-center">
-                        <span className="text-5xl opacity-30">🎨</span>
-                        <p className="text-lg font-semibold text-slate-400">No styling frameworks found</p>
+                        <span className="text-5xl opacity-30">🤖</span>
+                        <p className="text-lg font-semibold text-slate-400">No frameworks found</p>
                         <p className="text-sm text-slate-600">Try a different keyword or clear the filters</p>
                         <button
                             onClick={() => { setSearch(''); setCategory('All'); }}
-                            className="mt-2 px-5 py-2.5 rounded-xl border border-pink-400/40 text-pink-300
-                         text-sm font-medium hover:bg-pink-400/10 transition-all"
+                            className="mt-2 px-5 py-2.5 rounded-xl border border-indigo-400/40 text-indigo-400
+                         text-sm font-medium hover:bg-indigo-400/10 transition-all"
                         >
                             Clear filters
                         </button>
                     </div>
                 ) : (
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
-                        {filtered.map((fw, i) => (
+                    <div className="columns-1 md:columns-2 gap-5 space-y-5">
+                        {filtered.map((fw) => (
                             <div key={fw.id} className="break-inside-avoid rounded-2xl">
-                                <StylingCard fw={fw} index={i} onShowSteps={setSelectedFw} />
+                                <AiCard fw={fw} onShowSteps={setSelectedFw} />
                             </div>
                         ))}
                     </div>
@@ -146,13 +157,13 @@ export default function StylingPage() {
             {/* ── Glass Modal Overlay ─────────── */}
             {selectedFw && (
                 <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 sm:pt-20"
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 sm:pt-20 lg:pt-6"
                     style={{ backdropFilter: 'blur(12px)', backgroundColor: 'rgba(5, 7, 15, 0.75)' }}
                     onClick={() => setSelectedFw(null)}
                 >
                     <div
-                        className="relative w-full max-w-2xl bg-[#0d1117] border border-surface-500 rounded-3xl
-                     shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(251,113,133,0.1)]
+                        className="relative w-full max-w-3xl bg-[#0d1117] border border-surface-500 rounded-3xl
+                     shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9),0_0_0_1px_rgba(99,102,241,0.2)]
                      overflow-hidden flex flex-col max-h-[90vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -164,7 +175,7 @@ export default function StylingPage() {
                                     <h2 className="text-2xl font-extrabold text-white mb-1">
                                         {selectedFw.name} Setup
                                     </h2>
-                                    <p className="text-slate-400 text-sm">Complete installation workflow</p>
+                                    <p className="text-slate-400 text-sm">{selectedFw.badge} Integration Guide</p>
                                 </div>
                             </div>
                             <button
@@ -180,39 +191,44 @@ export default function StylingPage() {
 
                         {/* Modal body */}
                         <div className="p-6 sm:p-8 overflow-y-auto bg-[#0d1117]">
-                            {/* Package manager tabs */}
+                            {/* Language tabs */}
                             <div className="flex gap-2 p-1 mb-8 bg-surface-800 border border-surface-500 rounded-xl w-fit">
-                                {PKG_MANAGERS.map((m) => (
-                                    <button
-                                        key={m}
-                                        onClick={() => setPkg(m)}
-                                        className={`px-5 py-2 rounded-lg text-sm font-bold font-mono transition-all duration-150 ${pkg === m
-                                            ? 'bg-pink-400/20 text-pink-300 border border-pink-400/30'
-                                            : 'text-slate-500 hover:text-slate-300 border border-transparent'
-                                            }`}
-                                    >
-                                        {m}
-                                    </button>
-                                ))}
+                                {AI_TABS.map((t) => {
+                                    const isSupported = selectedFw.steps.some(s => s[t.id] !== null);
+                                    if (!isSupported) return null;
+
+                                    return (
+                                        <button
+                                            key={t.id}
+                                            onClick={() => setLang(t.id)}
+                                            className={`px-5 py-2 rounded-lg text-sm font-bold font-mono transition-all duration-150 ${lang === t.id
+                                                ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-400/30'
+                                                : 'text-slate-500 hover:text-slate-300 border border-transparent'
+                                                }`}
+                                        >
+                                            {t.label}
+                                        </button>
+                                    );
+                                })}
                             </div>
 
-                            {/* Steps */}
+                            {/* Steps with heart buttons on each command */}
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
                                 {(selectedFw.steps || []).map((s, i) => {
-                                    const cmd = s[pkg];
+                                    const cmd = s[lang];
                                     return (
                                         <div key={i} className="relative">
-                                            <StepRow number={i + 1} step={s} pkg={pkg} />
+                                            <StepRow number={i + 1} step={s} lang={lang} />
                                             {cmd !== null && cmd !== undefined && (
                                                 <div className="absolute right-0 top-0 mt-[6px]">
                                                     <HeartButton item={{
-                                                        id: `styling-frameworks-${selectedFw.id}-step-${i}-${pkg}`,
+                                                        id: `ai-${selectedFw.id}-step-${i}-${lang}`,
                                                         framework: selectedFw.name,
                                                         frameworkIcon: selectedFw.icon,
-                                                        section: 'Styling Frameworks',
+                                                        section: 'AI Frameworks',
                                                         label: s.label,
                                                         command: cmd,
-                                                        lang: pkg,
+                                                        lang,
                                                     }} />
                                                 </div>
                                             )}

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { frameworks, categories } from '../data/frameworks.js';
 import FrameworkCard, { PKG_MANAGERS, StepRow } from '../components/FrameworkCard';
+import HeartButton from '../components/HeartButton';
 
 export default function FrameworksPage() {
     const [search, setSearch] = useState('');
@@ -219,9 +220,27 @@ export default function FrameworksPage() {
                             </div>
 
                             <div className="flex flex-col gap-6 sm:gap-8 pb-4">
-                                {(selectedFw.steps || []).map((s, i) => (
-                                    <StepRow key={i} number={i + 1} step={s} pkg={pkg} />
-                                ))}
+                                {(selectedFw.steps || []).map((s, i) => {
+                                    const cmd = s[pkg];
+                                    return (
+                                        <div key={i} className="relative">
+                                            <StepRow number={i + 1} step={s} pkg={pkg} />
+                                            {cmd !== null && cmd !== undefined && (
+                                                <div className="absolute right-0 top-0 mt-[6px]">
+                                                    <HeartButton item={{
+                                                        id: `frontend-frameworks-${selectedFw.id}-step-${i}-${pkg}`,
+                                                        framework: selectedFw.name,
+                                                        frameworkIcon: selectedFw.icon,
+                                                        section: 'Frontend Frameworks',
+                                                        label: s.label,
+                                                        command: cmd,
+                                                        lang: pkg,
+                                                    }} />
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             <div className="mt-8 pt-6 border-t border-surface-500/50 flex justify-end">
