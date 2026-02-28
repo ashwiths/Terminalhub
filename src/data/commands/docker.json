@@ -1,0 +1,273 @@
+[
+    {
+        "id": "docker-001",
+        "ecosystem": "docker",
+        "category": "Images",
+        "command": "docker build -t my-app:latest .",
+        "description": "Build a Docker image from the Dockerfile in the current directory",
+        "tags": [
+            "build",
+            "image",
+            "dockerfile",
+            "tag"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-002",
+        "ecosystem": "docker",
+        "category": "Images",
+        "command": "docker images",
+        "description": "List all locally available Docker images",
+        "tags": [
+            "images",
+            "list",
+            "local"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-003",
+        "ecosystem": "docker",
+        "category": "Images",
+        "command": "docker rmi image-name:tag",
+        "description": "Remove a Docker image by name and tag",
+        "tags": [
+            "remove",
+            "delete",
+            "image",
+            "rmi"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-004",
+        "ecosystem": "docker",
+        "category": "Images",
+        "command": "docker pull node:20-alpine",
+        "description": "Pull a Docker image from Docker Hub",
+        "tags": [
+            "pull",
+            "download",
+            "image",
+            "hub"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-005",
+        "ecosystem": "docker",
+        "category": "Containers",
+        "command": "docker run -d -p 3000:3000 --name my-app my-app:latest",
+        "description": "Run a container in detached mode, mapping port 3000",
+        "tags": [
+            "run",
+            "container",
+            "detached",
+            "port"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-006",
+        "ecosystem": "docker",
+        "category": "Containers",
+        "command": "docker ps -a",
+        "description": "List all containers (including stopped ones)",
+        "tags": [
+            "list",
+            "containers",
+            "ps",
+            "all"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-007",
+        "ecosystem": "docker",
+        "category": "Containers",
+        "command": "docker exec -it my-app sh",
+        "description": "Open an interactive shell inside a running container",
+        "tags": [
+            "exec",
+            "shell",
+            "interactive",
+            "bash"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-008",
+        "ecosystem": "docker",
+        "category": "Containers",
+        "command": "docker logs -f my-app",
+        "description": "Stream live logs from a running container",
+        "tags": [
+            "logs",
+            "stream",
+            "follow",
+            "debug"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-009",
+        "ecosystem": "docker",
+        "category": "Containers",
+        "command": "docker stop my-app && docker rm my-app",
+        "description": "Stop and remove a container",
+        "tags": [
+            "stop",
+            "remove",
+            "cleanup",
+            "container"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-010",
+        "ecosystem": "docker",
+        "category": "Compose",
+        "command": "docker compose up -d",
+        "description": "Start all services defined in docker-compose.yml in detached mode",
+        "tags": [
+            "compose",
+            "up",
+            "start",
+            "services"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-011",
+        "ecosystem": "docker",
+        "category": "Compose",
+        "command": "docker compose down --volumes",
+        "description": "Stop and remove containers, networks, and named volumes",
+        "tags": [
+            "compose",
+            "down",
+            "stop",
+            "volumes",
+            "cleanup"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-012",
+        "ecosystem": "docker",
+        "category": "Compose",
+        "command": "docker compose logs -f service-name",
+        "description": "Follow live logs for a specific compose service",
+        "tags": [
+            "compose",
+            "logs",
+            "follow",
+            "service"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-013",
+        "ecosystem": "docker",
+        "category": "System",
+        "command": "docker system prune -a",
+        "description": "Remove all unused images, containers, networks, and build cache",
+        "tags": [
+            "prune",
+            "cleanup",
+            "system",
+            "space"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-014",
+        "ecosystem": "docker",
+        "category": "Registry",
+        "command": "docker push username/my-app:latest",
+        "description": "Push a local image to Docker Hub",
+        "tags": [
+            "push",
+            "registry",
+            "hub",
+            "publish"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "docker-015",
+        "ecosystem": "docker",
+        "category": "System",
+        "command": "docker stats",
+        "description": "Show live resource usage stats for running containers",
+        "tags": [
+            "stats",
+            "monitor",
+            "cpu",
+            "memory",
+            "resources"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    }
+]

@@ -1,0 +1,142 @@
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all var(--transition);
+    animation: fadeSlideUp 0.3s ease both;
+    cursor: default;
+}
+
+.card:hover {
+    border-color: var(--eco-accent);
+    background: var(--bg-card-hover);
+    box-shadow: 0 0 0 1px var(--eco-accent), var(--shadow-glow-hover);
+    transform: translateY(-2px);
+}
+
+/* Top row */
+.topRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--eco-accent);
+    background: color-mix(in srgb, var(--eco-accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--eco-accent) 25%, transparent);
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+.platforms {
+    display: flex;
+    gap: 4px;
+}
+
+.platform {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: var(--font-mono);
+    text-transform: capitalize;
+}
+
+/* Command block */
+.commandBlock {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    position: relative;
+}
+
+.prompt {
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.7;
+}
+
+.command {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-code);
+    white-space: pre-wrap;
+    word-break: break-all;
+    flex: 1;
+    line-height: 1.5;
+}
+
+.copyBtn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition);
+    margin-top: -2px;
+}
+
+.copyBtn:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    background: rgba(0, 245, 196, 0.08);
+}
+
+.copyBtn.copied {
+    border-color: #10b981;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    animation: glowPulse 0.8s ease;
+}
+
+/* Description */
+.description {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    cursor: default;
+    transition: color var(--transition);
+}
+
+.tag:hover {
+    color: var(--text-secondary);
+}

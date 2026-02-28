@@ -1,0 +1,272 @@
+[
+    {
+        "id": "npm-001",
+        "ecosystem": "npm",
+        "category": "Project Setup",
+        "command": "npm init -y",
+        "description": "Initialize a new Node.js project with default package.json",
+        "tags": [
+            "init",
+            "create",
+            "project",
+            "setup"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-002",
+        "ecosystem": "npm",
+        "category": "Project Setup",
+        "command": "npm install",
+        "description": "Install all dependencies listed in package.json",
+        "tags": [
+            "install",
+            "dependencies",
+            "setup",
+            "packages"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-003",
+        "ecosystem": "npm",
+        "category": "Packages",
+        "command": "npm install package-name",
+        "description": "Install a package and save it as a dependency",
+        "tags": [
+            "install",
+            "add",
+            "dependency",
+            "package"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-004",
+        "ecosystem": "npm",
+        "category": "Packages",
+        "command": "npm install -D package-name",
+        "description": "Install a package as a dev dependency",
+        "tags": [
+            "install",
+            "dev",
+            "devdependency",
+            "package"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-005",
+        "ecosystem": "npm",
+        "category": "Packages",
+        "command": "npm uninstall package-name",
+        "description": "Remove a package and its entry from package.json",
+        "tags": [
+            "uninstall",
+            "remove",
+            "delete",
+            "package"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-006",
+        "ecosystem": "npm",
+        "category": "Packages",
+        "command": "npm update",
+        "description": "Update all packages to their latest allowed versions",
+        "tags": [
+            "update",
+            "upgrade",
+            "packages",
+            "latest"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-007",
+        "ecosystem": "npm",
+        "category": "Scripts",
+        "command": "npm run dev",
+        "description": "Run the 'dev' script defined in package.json",
+        "tags": [
+            "run",
+            "dev",
+            "script",
+            "development"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-008",
+        "ecosystem": "npm",
+        "category": "Scripts",
+        "command": "npm run build",
+        "description": "Run the 'build' script to compile the project for production",
+        "tags": [
+            "build",
+            "compile",
+            "production",
+            "bundle"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-009",
+        "ecosystem": "npm",
+        "category": "Scripts",
+        "command": "npm test",
+        "description": "Run the test suite defined in package.json",
+        "tags": [
+            "test",
+            "run",
+            "jest",
+            "vitest"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-010",
+        "ecosystem": "npm",
+        "category": "Audit & Info",
+        "command": "npm audit fix",
+        "description": "Automatically fix security vulnerabilities in dependencies",
+        "tags": [
+            "audit",
+            "security",
+            "fix",
+            "vulnerability"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-011",
+        "ecosystem": "npm",
+        "category": "Audit & Info",
+        "command": "npm outdated",
+        "description": "Show which installed packages have newer versions available",
+        "tags": [
+            "outdated",
+            "versions",
+            "check",
+            "upgrade"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-012",
+        "ecosystem": "npm",
+        "category": "Audit & Info",
+        "command": "npm list --depth=0",
+        "description": "List top-level installed packages (no nested dependencies)",
+        "tags": [
+            "list",
+            "packages",
+            "installed",
+            "top-level"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-013",
+        "ecosystem": "npm",
+        "category": "Publishing",
+        "command": "npm login",
+        "description": "Log in to your npm account in the CLI",
+        "tags": [
+            "login",
+            "auth",
+            "publish",
+            "registry"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-014",
+        "ecosystem": "npm",
+        "category": "Publishing",
+        "command": "npm publish --access public",
+        "description": "Publish a package to the npm registry as a public package",
+        "tags": [
+            "publish",
+            "release",
+            "registry",
+            "public"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "npm-015",
+        "ecosystem": "npm",
+        "category": "Cache",
+        "command": "npm cache clean --force",
+        "description": "Force clear the npm cache to resolve install issues",
+        "tags": [
+            "cache",
+            "clean",
+            "clear",
+            "force"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    }
+]

@@ -1,0 +1,220 @@
+[
+    {
+        "id": "react-001",
+        "ecosystem": "react",
+        "category": "Project Setup",
+        "command": "npm create vite@latest my-app -- --template react",
+        "description": "Scaffold a new React project using Vite (recommended)",
+        "tags": [
+            "create",
+            "vite",
+            "scaffold",
+            "setup",
+            "react"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-002",
+        "ecosystem": "react",
+        "category": "Project Setup",
+        "command": "npx create-react-app my-app",
+        "description": "Scaffold a new React project using Create React App",
+        "tags": [
+            "create",
+            "cra",
+            "scaffold",
+            "setup"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-003",
+        "ecosystem": "react",
+        "category": "Testing",
+        "command": "npm install -D @testing-library/react @testing-library/jest-dom vitest",
+        "description": "Install React Testing Library + Vitest for unit testing",
+        "tags": [
+            "testing",
+            "vitest",
+            "testing-library",
+            "install"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-004",
+        "ecosystem": "react",
+        "category": "Routing",
+        "command": "npm install react-router-dom",
+        "description": "Install React Router v6+ for client-side routing",
+        "tags": [
+            "router",
+            "routing",
+            "navigation",
+            "install"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-005",
+        "ecosystem": "react",
+        "category": "State Management",
+        "command": "npm install zustand",
+        "description": "Install Zustand — a minimal, fast global state management library",
+        "tags": [
+            "state",
+            "zustand",
+            "global",
+            "store"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-006",
+        "ecosystem": "react",
+        "category": "State Management",
+        "command": "npm install @tanstack/react-query",
+        "description": "Install TanStack Query (React Query) for async server-state management",
+        "tags": [
+            "query",
+            "tanstack",
+            "async",
+            "data-fetching"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-007",
+        "ecosystem": "react",
+        "category": "Styling",
+        "command": "npm install styled-components",
+        "description": "Install Styled Components for CSS-in-JS styling",
+        "tags": [
+            "css",
+            "styled-components",
+            "styling",
+            "css-in-js"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-008",
+        "ecosystem": "react",
+        "category": "Styling",
+        "command": "npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p",
+        "description": "Install and initialize Tailwind CSS in a React project",
+        "tags": [
+            "tailwind",
+            "css",
+            "styling",
+            "utility"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-009",
+        "ecosystem": "react",
+        "category": "Build & Dev",
+        "command": "npm run dev",
+        "description": "Start the Vite development server with HMR",
+        "tags": [
+            "dev",
+            "server",
+            "vite",
+            "hmr",
+            "development"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-010",
+        "ecosystem": "react",
+        "category": "Build & Dev",
+        "command": "npm run build && npm run preview",
+        "description": "Build for production then preview the build locally",
+        "tags": [
+            "build",
+            "preview",
+            "production",
+            "local"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-011",
+        "ecosystem": "react",
+        "category": "Dev Tools",
+        "command": "npm install -D eslint eslint-plugin-react eslint-plugin-react-hooks",
+        "description": "Install ESLint with React-specific plugins for code linting",
+        "tags": [
+            "eslint",
+            "lint",
+            "react",
+            "hooks"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "react-012",
+        "ecosystem": "react",
+        "category": "Animation",
+        "command": "npm install framer-motion",
+        "description": "Install Framer Motion for production-ready React animations",
+        "tags": [
+            "animation",
+            "framer",
+            "motion",
+            "transition"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    }
+]

@@ -1,0 +1,216 @@
+[
+    {
+        "id": "astro-001",
+        "ecosystem": "astro",
+        "category": "Project Setup",
+        "command": "npm create astro@latest",
+        "description": "Scaffold a new Astro project with the official setup wizard",
+        "tags": [
+            "create",
+            "scaffold",
+            "init",
+            "new"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-002",
+        "ecosystem": "astro",
+        "category": "Project Setup",
+        "command": "npm create astro@latest -- --template blog",
+        "description": "Create a new Astro project using the official blog template",
+        "tags": [
+            "create",
+            "template",
+            "blog",
+            "scaffold"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-003",
+        "ecosystem": "astro",
+        "category": "Integrations",
+        "command": "npx astro add react",
+        "description": "Add React integration to an existing Astro project",
+        "tags": [
+            "add",
+            "react",
+            "integration",
+            "island"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-004",
+        "ecosystem": "astro",
+        "category": "Integrations",
+        "command": "npx astro add tailwind",
+        "description": "Add Tailwind CSS integration to an Astro project",
+        "tags": [
+            "add",
+            "tailwind",
+            "css",
+            "integration"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-005",
+        "ecosystem": "astro",
+        "category": "Integrations",
+        "command": "npx astro add mdx",
+        "description": "Add MDX support (Markdown + JSX) to an Astro project",
+        "tags": [
+            "mdx",
+            "markdown",
+            "jsx",
+            "content"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-006",
+        "ecosystem": "astro",
+        "category": "Integrations",
+        "command": "npx astro add sitemap",
+        "description": "Add automatic sitemap generation to an Astro project",
+        "tags": [
+            "sitemap",
+            "seo",
+            "integration"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-007",
+        "ecosystem": "astro",
+        "category": "Development",
+        "command": "npm run dev",
+        "description": "Start the Astro development server on localhost:4321",
+        "tags": [
+            "dev",
+            "server",
+            "development",
+            "local"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-008",
+        "ecosystem": "astro",
+        "category": "Development",
+        "command": "npx astro check",
+        "description": "Type-check your Astro project for errors",
+        "tags": [
+            "check",
+            "typecheck",
+            "errors",
+            "typescript"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-009",
+        "ecosystem": "astro",
+        "category": "Build",
+        "command": "npm run build",
+        "description": "Build the Astro project for production (outputs to dist/)",
+        "tags": [
+            "build",
+            "production",
+            "output",
+            "dist"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-010",
+        "ecosystem": "astro",
+        "category": "Build",
+        "command": "npm run preview",
+        "description": "Preview the production build locally before deploying",
+        "tags": [
+            "preview",
+            "production",
+            "local",
+            "test"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-011",
+        "ecosystem": "astro",
+        "category": "Adapters",
+        "command": "npx astro add vercel",
+        "description": "Add Vercel deployment adapter to an Astro project",
+        "tags": [
+            "vercel",
+            "deploy",
+            "adapter",
+            "serverless"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "astro-012",
+        "ecosystem": "astro",
+        "category": "Adapters",
+        "command": "npx astro add netlify",
+        "description": "Add Netlify deployment adapter to an Astro project",
+        "tags": [
+            "netlify",
+            "deploy",
+            "adapter"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    }
+]

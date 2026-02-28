@@ -1,0 +1,274 @@
+[
+    {
+        "id": "git-001",
+        "ecosystem": "git",
+        "category": "Setup",
+        "command": "git init",
+        "description": "Initialize a new Git repository in the current directory",
+        "tags": [
+            "init",
+            "create",
+            "repo",
+            "start"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-002",
+        "ecosystem": "git",
+        "category": "Setup",
+        "command": "git clone https://github.com/user/repo.git",
+        "description": "Clone a remote repository to your local machine",
+        "tags": [
+            "clone",
+            "remote",
+            "download",
+            "copy"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-003",
+        "ecosystem": "git",
+        "category": "Staging & Commits",
+        "command": "git add -A",
+        "description": "Stage all changes (new, modified, deleted files) for commit",
+        "tags": [
+            "add",
+            "stage",
+            "all",
+            "track"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-004",
+        "ecosystem": "git",
+        "category": "Staging & Commits",
+        "command": "git commit -m \"feat: add new feature\"",
+        "description": "Commit staged changes with a descriptive message (Conventional Commits style)",
+        "tags": [
+            "commit",
+            "message",
+            "save",
+            "conventional"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-005",
+        "ecosystem": "git",
+        "category": "Staging & Commits",
+        "command": "git commit --amend --no-edit",
+        "description": "Amend the last commit without changing the commit message",
+        "tags": [
+            "amend",
+            "edit",
+            "last",
+            "commit",
+            "fix"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-006",
+        "ecosystem": "git",
+        "category": "Branching",
+        "command": "git checkout -b feature/my-feature",
+        "description": "Create and switch to a new branch",
+        "tags": [
+            "branch",
+            "checkout",
+            "create",
+            "switch"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-007",
+        "ecosystem": "git",
+        "category": "Branching",
+        "command": "git branch -d feature/my-feature",
+        "description": "Delete a merged local branch",
+        "tags": [
+            "branch",
+            "delete",
+            "remove",
+            "local"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-008",
+        "ecosystem": "git",
+        "category": "Branching",
+        "command": "git merge --no-ff feature/my-feature",
+        "description": "Merge a feature branch with a merge commit (no fast-forward)",
+        "tags": [
+            "merge",
+            "branch",
+            "no-ff",
+            "integrate"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-009",
+        "ecosystem": "git",
+        "category": "Remote",
+        "command": "git push origin --delete feature/my-feature",
+        "description": "Delete a remote branch",
+        "tags": [
+            "push",
+            "delete",
+            "remote",
+            "branch"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-010",
+        "ecosystem": "git",
+        "category": "Remote",
+        "command": "git pull --rebase origin main",
+        "description": "Pull latest changes and rebase your commits on top",
+        "tags": [
+            "pull",
+            "rebase",
+            "remote",
+            "sync",
+            "main"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-011",
+        "ecosystem": "git",
+        "category": "History",
+        "command": "git log --oneline --graph --decorate",
+        "description": "Show a compact, visual branch graph of commit history",
+        "tags": [
+            "log",
+            "history",
+            "graph",
+            "visual"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-012",
+        "ecosystem": "git",
+        "category": "History",
+        "command": "git blame -L 10,20 file.js",
+        "description": "Show who last modified each line (lines 10–20) of a file",
+        "tags": [
+            "blame",
+            "author",
+            "history",
+            "lines"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-013",
+        "ecosystem": "git",
+        "category": "Undoing",
+        "command": "git reset --hard HEAD~1",
+        "description": "Undo the last commit and discard all changes permanently",
+        "tags": [
+            "reset",
+            "undo",
+            "hard",
+            "discard"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-014",
+        "ecosystem": "git",
+        "category": "Undoing",
+        "command": "git stash pop",
+        "description": "Reapply the most recent stashed changes and remove from stash",
+        "tags": [
+            "stash",
+            "pop",
+            "restore",
+            "apply"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    },
+    {
+        "id": "git-015",
+        "ecosystem": "git",
+        "category": "Inspection",
+        "command": "git diff HEAD~1 HEAD -- file.js",
+        "description": "Show what changed in a specific file between the last two commits",
+        "tags": [
+            "diff",
+            "compare",
+            "file",
+            "changes"
+        ],
+        "platform": [
+            "linux",
+            "macos",
+            "windows"
+        ]
+    }
+]

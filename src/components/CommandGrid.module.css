@@ -1,0 +1,31 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    gap: 12px;
+    text-align: center;
+}
+
+.emptyIcon {
+    font-size: 48px;
+    opacity: 0.4;
+}
+
+.emptyTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.emptyHint {
+    font-size: 14px;
+    color: var(--text-muted);
+}
