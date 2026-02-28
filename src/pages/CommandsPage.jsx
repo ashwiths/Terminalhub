@@ -1,94 +1,236 @@
 import { Link } from 'react-router-dom';
-import { ecosystems } from '../data/index.js';
-
-// Map ecosystems to numbered cards — matches the reference image style
-const ecoMeta = {
-    linux: { num: '01', desc: 'Essential Linux/Unix CLI commands for file system, networking, processes, and more.', icon: '🐧' },
-    git: { num: '02', desc: 'Version control mastery — branching, rebasing, history inspection, and remotes.', icon: '🔀' },
-    npm: { num: '03', desc: 'Node.js package management: install, publish, audit, and run scripts efficiently.', icon: '📦' },
-    react: { num: '04', desc: 'React project setup, tooling, routing, state management, and build commands.', icon: '⚛️' },
-    astro: { num: '05', desc: 'Astro framework — scaffolding, integrations, adapters, and deployment.', icon: '🚀' },
-    docker: { num: '06', desc: 'Container lifecycle, image management, Docker Compose, and registry commands.', icon: '🐳' },
-};
+import { frameworks } from '../data/frameworks.js';
+import { stylingFrameworks } from '../data/styling.js';
+import { backendFrameworks } from '../data/backend.js';
+import { pythonFrameworks } from '../data/pythonData.js';
+import { javaFrameworks } from '../data/javaData.js';
 
 export default function CommandsPage() {
-    const list = ecosystems.filter((e) => e.id !== 'all');
-
     return (
         <main className="min-h-screen">
             {/* Page header */}
             <section className="max-w-7xl mx-auto px-6 pt-16 pb-10">
                 <p className="text-brand-cyan font-mono text-sm font-medium mb-3 tracking-widest uppercase">
-                    Browse / Ecosystems
+                    Browse
                 </p>
                 <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
-                    Command Library
+                    Framework Library
                 </h1>
                 <p className="text-slate-400 text-lg max-w-2xl">
-                    Pick an ecosystem below and explore categorized CLI commands — all copyable in one click.
+                    Explore framework setup guides and CLI commands — all copyable in one click.
                 </p>
             </section>
 
-            {/* Numbered grid — like reference image */}
-            <section className="max-w-7xl mx-auto px-6 pb-24">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-surface-500 rounded-2xl overflow-hidden">
-                    {list.map((eco, i) => {
-                        const meta = ecoMeta[eco.id] || {};
-                        return (
-                            <Link
-                                key={eco.id}
-                                to={`/commands/${eco.id}`}
-                                className={`group relative flex flex-col p-8 border-surface-500 bg-surface-900
-                            hover:bg-surface-800 transition-all duration-200
-                            ${i % 3 !== 2 ? 'sm:border-r' : ''}
-                            ${i < list.length - (list.length % 3 || 3) ? 'border-b' : ''}
-                            ${i < 3 ? 'border-b' : ''}
-                           `}
-                            >
-                                {/* Large number */}
-                                <span
-                                    className="font-mono text-6xl font-black leading-none select-none mb-6"
-                                    style={{ color: eco.color, opacity: 0.25 }}
-                                >
-                                    {meta.num}
+            <section className="max-w-7xl mx-auto px-6 pb-24 flex flex-col gap-5">
+                {/* ── Frontend Frameworks card ── */}
+                <Link
+                    to="/frameworks"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-brand-purple/50 bg-brand-purple/5 shadow-[0_0_0_1px_rgba(167,139,250,0.3),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-brand-purple/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-brand-purple/30 bg-brand-purple/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        🧩
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Frontend Setup Guide
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-brand-purple/40 bg-brand-purple/10 text-brand-purple">
+                                Featured
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Every major frontend framework — React, Next.js, Astro, Vue, Nuxt, Svelte, SvelteKit,
+                            SolidJS, Qwik, Alpine.js, Lit &amp; Remix — with the exact install command and category labels.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['React', 'Next.js', 'Astro', 'Vue', 'Svelte', `+${frameworks.length - 5} more`].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-brand-purple/80 bg-brand-purple/10 border border-brand-purple/20 rounded px-2 py-0.5">
+                                    {f}
                                 </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-brand-purple/20 flex items-center justify-center
+                          text-brand-purple group-hover:bg-brand-purple group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
 
-                                {/* Ecosystem label pill */}
-                                <span
-                                    className="self-start text-xs font-bold uppercase tracking-widest px-3 py-1
-                             rounded-full border mb-4"
-                                    style={{
-                                        color: eco.color,
-                                        borderColor: `${eco.color}44`,
-                                        background: `${eco.color}12`,
-                                    }}
-                                >
-                                    {meta.icon} {eco.label}
+                {/* ── Styling Frameworks card ── */}
+                <Link
+                    to="/styling"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-pink-500/40 bg-pink-500/5 shadow-[0_0_0_1px_rgba(236,72,153,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-pink-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-pink-500/30 bg-pink-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        🎨
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Styling Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-pink-500/40 bg-pink-500/10 text-pink-400">
+                                New
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Tailwind CSS, Bootstrap, Material UI, ShadCN UI, Chakra UI, and Ant Design —
+                            complete install workflows with config steps and usage examples.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['Tailwind', 'Bootstrap', 'MUI', 'ShadCN', 'Chakra', `+${stylingFrameworks.length - 5} more`].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-pink-400/80 bg-pink-500/10 border border-pink-500/20 rounded px-2 py-0.5">
+                                    {f}
                                 </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center
+                          text-pink-400 group-hover:bg-pink-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
 
-                                {/* Description */}
-                                <p className="text-slate-400 text-sm leading-relaxed flex-1">
-                                    {meta.desc}
-                                </p>
+                {/* ── Backend Frameworks card ── */}
+                <Link
+                    to="/backend"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_0_1px_rgba(16,185,129,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-emerald-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-emerald-500/30 bg-emerald-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        🔌
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Backend Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
+                                Node.js
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Express.js, NestJS, Fastify, AdonisJS, LoopBack, and KeystoneJS —
+                            instantly accessible project setup commands for REST APIs, GraphQL, and CMS.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['Express', 'NestJS', 'Fastify', 'AdonisJS', `+${backendFrameworks.length - 4} more`].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-emerald-400/80 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center
+                          text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
 
-                                {/* Arrow */}
-                                <div className="mt-8 flex items-center justify-between">
-                                    <span className="text-slate-600 text-xs font-mono">
-                                        {/* command count populated via data */}
-                                    </span>
-                                    <span
-                                        className="w-9 h-9 rounded-full border border-surface-500 flex items-center justify-center
-                               text-slate-500 group-hover:border-brand-cyan group-hover:text-brand-cyan
-                               transition-all duration-200 group-hover:translate-x-1"
-                                    >
-                                        →
-                                    </span>
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
+                {/* ── Python Frameworks card ── */}
+                <Link
+                    to="/python"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-yellow-500/40 bg-yellow-500/5 shadow-[0_0_0_1px_rgba(234,179,8,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-yellow-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-yellow-500/30 bg-yellow-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        🐍
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Python Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-yellow-500/40 bg-yellow-500/10 text-yellow-400">
+                                Python
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Django, Flask, FastAPI, and Pyramid — complete project creation workflows with virtual environment setup included.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['Django', 'Flask', 'FastAPI', 'Pyramid'].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-yellow-400/80 bg-yellow-500/10 border border-yellow-500/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center
+                          text-yellow-400 group-hover:bg-yellow-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
+
+                {/* ── Java Frameworks card ── */}
+                <Link
+                    to="/java"
+                    className="group flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 rounded-2xl
+                     border border-orange-500/40 bg-orange-500/5 shadow-[0_0_0_1px_rgba(249,115,22,0.25),0_8px_32px_rgba(0,0,0,0.4)]
+                     hover:bg-orange-500/10 transition-all duration-200"
+                >
+                    <div className="w-16 h-16 rounded-2xl border border-orange-500/30 bg-orange-500/10
+                          flex items-center justify-center text-3xl flex-shrink-0">
+                        ☕
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                                Java Frameworks
+                            </h2>
+                            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full
+                               border border-orange-500/40 bg-orange-500/10 text-orange-500">
+                                Java Ecosystem
+                            </span>
+                        </div>
+                        <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
+                            Spring Boot, Micronaut, and Quarkus — enterprise and cloud-native Java frameworks with setup guides for Gradle and Maven.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {['Spring Boot', 'Micronaut', 'Quarkus'].map((f) => (
+                                <span key={f} className="text-[11px] font-mono text-orange-400/80 bg-orange-500/10 border border-orange-500/20 rounded px-2 py-0.5">
+                                    {f}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center
+                          text-orange-500 group-hover:bg-orange-500 group-hover:text-white
+                          transition-all duration-200 group-hover:translate-x-1 flex-shrink-0 self-center shadow-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </Link>
             </section>
         </main>
     );
 }
+
