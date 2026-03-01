@@ -13,6 +13,7 @@ import MobilePage from './pages/MobilePage';
 import DocsPage from './pages/DocsPage';
 import AiPage from './pages/AiPage';
 import FavoritesPage from './pages/FavoritesPage';
+import GitHubPage from './pages/GitHubPage';
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/docs" element={<DocsPage />} />
             <Route path="/ai" element={<AiPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/github" element={<GitHubPage />} />
           </Routes>
         </div>
       </FavoritesProvider>
